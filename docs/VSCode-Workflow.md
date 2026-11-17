@@ -1,6 +1,18 @@
 # C++ Onboarding Warm-Up: VS Code Workflow
+This warm-up rehearses the exact workflow used in class on **Thursday, November 19**. It is practice, not a graded AI-versus-no-AI task. Complete the workflow and open your Pull Request during the onboarding session.
 
-This warm-up rehearses the exact workflow used in class on **Thursday, November 19**. It is practice, not a graded AI-versus-no-AI task. Complete the workflow and open your Pull Request during today’s onboarding session.
+## Quick path
+
+If you already have Git, `g++`, and VS Code working, follow this short path:
+
+1. Run `./scripts/check-env.sh`.
+2. Accept the GitHub Classroom invitation and open your personal assignment repository.
+3. Create `warmup/YOUR-GITHUB-USERNAME`.
+4. Implement `countSpikes` in `src/warmup.cpp`.
+5. Run `make test`, or use the VS Code **no make** task.
+6. Commit, push your branch, and open a Pull Request into `main`.
+
+Use the detailed sections below if any step is unfamiliar or your computer needs setup.
 
 ## Before class: run the environment check
 
@@ -268,7 +280,7 @@ In the description, include:
 - Opened this Pull Request into main
 ```
 
-Do not merge the Pull Request unless your instructor asks you to. The point of today’s exercise is to practice creating the PR.
+Do not merge the Pull Request unless your instructor asks you to. The point of the exercise is to practice creating the PR.
 
 ## Troubleshooting
 
