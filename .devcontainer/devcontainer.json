@@ -1,0 +1,12 @@
+{
+  "name": "C++ Onboarding Warm-Up",
+  "image": "mcr.microsoft.com/vscode/devcontainers/cpp:1-ubuntu-22.04",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools"
+      ]
+    }
+  },
+  "postCreateCommand": "./scripts/check-env.sh || true"
+}

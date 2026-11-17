@@ -10,6 +10,14 @@
       "problemMatcher": ["$gcc"]
     },
     {
+      "label": "C++: build and run tests (no make)",
+      "type": "shell",
+      "command": "mkdir -p build && g++ -std=c++17 -Wall -Wextra -pedantic -g -Isrc src/warmup.cpp tests/test_warmup.cpp -o build/test_warmup && ./build/test_warmup",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "problemMatcher": ["$gcc"]
+    },
+    {
       "label": "C++: clean build",
       "type": "shell",
       "command": "make clean",
