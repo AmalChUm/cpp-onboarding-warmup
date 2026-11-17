@@ -20,7 +20,7 @@ This is practice—not a graded debugging experiment. The larger experiment desi
 
 Use the **GitHub Classroom invitation link provided by your instructor**. Do not clone this template repository directly: the template is the instructor-owned source repository, and students may not have permission to push to it or open the correct Pull Request there.
 
-If you are setting up the class, configure the Classroom assignment from this repository in the GitHub Classroom web interface. The `.github-classroom.yml` file is only a placeholder for that configuration.
+If you are setting up the class, follow [`docs/INSTRUCTOR-CLASSROOM-SETUP.md`](docs/INSTRUCTOR-CLASSROOM-SETUP.md) to configure the assignment in the GitHub Classroom web interface. The `.github-classroom.yml` file is only a placeholder for that configuration.
 
 ## Quick start
 
@@ -76,4 +76,5 @@ scripts/check-env.sh       Pre-class environment check
 .devcontainer/             Optional Codespaces configuration
 Makefile                   Command-line build and test shortcuts
 docs/VSCode-Workflow.md   Student instructions
+docs/INSTRUCTOR-CLASSROOM-SETUP.md  Instructor setup checklist
 ```
