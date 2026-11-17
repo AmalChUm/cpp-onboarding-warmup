@@ -8,6 +8,9 @@ on:
 
 jobs:
   build-and-test:
+    # The template intentionally contains TODOs, so do not report a red
+    # student-test check on unrelated template/documentation PRs.
+    if: github.event_name == 'push' || github.head_ref == 'feat/warmup'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
