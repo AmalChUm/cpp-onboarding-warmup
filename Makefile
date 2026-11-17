@@ -1,16 +1,17 @@
 CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -pedantic -g
+TARGET := build/warmup_test
 
 .PHONY: all test clean
 
 all: test
 
-test: build/test_warmup
-	./build/test_warmup
+test: $(TARGET)
+	./$(TARGET)
 
-build/test_warmup: src/warmup.cpp src/warmup.h tests/test_warmup.cpp
+$(TARGET): src/warmup.cpp src/warmup.hpp tests/warmup_tests.cpp
 	@mkdir -p build
-	$(CXX) $(CXXFLAGS) -Isrc src/warmup.cpp tests/test_warmup.cpp -o $@
+	$(CXX) $(CXXFLAGS) src/warmup.cpp tests/warmup_tests.cpp -o $(TARGET)
 
 clean:
 	rm -rf build

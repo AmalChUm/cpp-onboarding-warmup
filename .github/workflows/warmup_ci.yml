@@ -1,0 +1,17 @@
+name: Warm-Up CI Check
+
+on:
+  push:
+    branches: [feat/warmup]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and Run Warm-Up Tests
+        run: |
+          g++ -std=c++17 -Wall -Wextra src/warmup.cpp tests/warmup_tests.cpp -o warmup_test
+          ./warmup_test

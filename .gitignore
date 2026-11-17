@@ -1,3 +1,4 @@
 build/
+warmup_test
 .vscode/*.log
 .DS_Store

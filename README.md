@@ -1,80 +1,46 @@
-# C++ Onboarding Warm-Up
+# CSC-175 GitHub & C++ Environment Warm-Up
 
-A low-stakes practice repository for the GitHub Classroom, Git, branching, C++ compilation, testing, and Pull Request workflow used in the Thursday, November 19 class session.
+This low-stakes warm-up practices the GitHub workflow, VS Code editing, C++ compilation, local testing, branching, and Pull Requests used in the Thursday, November 19 lab.
 
-## Warm-up goal
-
-Complete the **Sensor Spike Detector** function in `src/warmup.cpp`. You will practice:
-
-- accepting a GitHub Classroom assignment;
-- creating and switching to a feature branch;
-- editing and saving C++ in VS Code;
-- compiling with `g++`;
-- running automated tests;
-- committing and pushing a branch; and
-- opening a Pull Request into `main`.
-
-This is practice—not a graded debugging experiment. The larger experiment design uses exercises involving arrays, structs, classes, loops, and decision statements; this warm-up intentionally starts with one small array-and-loop problem so the workflow is the focus.
+The repository template contains three small TODO functions in `src/warmup.cpp`. Complete them on branch `feat/warmup`, run the local tests, push the branch, open a Pull Request into `main`, wait for the Warm-Up CI Check, and merge.
 
 ## Student starting point
 
-Use the **GitHub Classroom invitation link provided by your instructor**. Do not clone this template repository directly: the template is the instructor-owned source repository, and students may not have permission to push to it or open the correct Pull Request there.
+This repository is a template. Use the collaborator invitation sent by the instructor to your assigned repository, named like `cpp-onboarding-warmup-YOUR-GITHUB-USERNAME`. Do not fork or work directly in this template repository.
 
-If you are setting up the class, follow [`docs/INSTRUCTOR-CLASSROOM-SETUP.md`](docs/INSTRUCTOR-CLASSROOM-SETUP.md) to configure the assignment in the GitHub Classroom web interface. The `.github-classroom.yml` file is only a placeholder for that configuration.
-
-## Quick start
-
-From the student assignment repository created by GitHub Classroom:
+## Quick path
 
 ```bash
+git clone https://github.com/AmalChUm/cpp-onboarding-warmup-YOUR-GITHUB-USERNAME.git
+cd cpp-onboarding-warmup-YOUR-GITHUB-USERNAME
+git checkout -b feat/warmup
 ./scripts/check-env.sh
-make test
 ```
 
-The starter code is intentionally incomplete, so the tests should fail until you implement `countSpikes`. If `make` is unavailable, use the VS Code task **C++: build and run tests (no make)**.
+Then implement the three functions in `src/warmup.cpp`, run `make test` or the direct `g++` command in the student guide, push `feat/warmup`, open the Pull Request into `main`, wait for CI, and merge.
 
-## Assignment
+## Functions
 
-Implement:
+- `sumEvenNumbers`: return the sum of even values in an integer array.
+- `countCharOccurrences`: count how many times a target character appears in a `std::string`.
+- `getArrayBounds`: write the smallest and largest array values through reference parameters.
 
-```cpp
-int countSpikes(const int readings[], int n);
-```
+Do not modify `src/warmup.hpp` or `tests/warmup_tests.cpp`.
 
-Count interior readings that are **strictly greater than the integer average** of their immediate neighbors. The first and last readings are never interior readings and must not be counted.
+## Documentation
 
-Examples:
-
-- `{1, 2, 1}` → `1`
-- `{1, 1, 1, 1}` → `0`
-- `{5, 1, 5}` → `0`
-
-Do not change the function signature or the tests. Keep your work on a branch named `warmup/<your-github-username>`.
-
-## Required workflow
-
-1. Run the environment check.
-2. Create your branch.
-3. Implement and test the function.
-4. Commit your work with a clear message.
-5. Push your branch to GitHub.
-6. Open a Pull Request from your branch into `main`.
-7. In the PR description, include the output of the test command.
-
-## VS Code instructions
-
-See [`docs/VSCode-Workflow.md`](docs/VSCode-Workflow.md) for the complete student walkthrough, including installation alternatives, Codespaces, VS Code click paths, terminal commands, troubleshooting, and the Pull Request checklist.
+- [Student step-by-step VS Code guide](docs/VSCode-Workflow.md)
+- [Instructor provisioning and setup runbook](docs/INSTRUCTOR-RUNBOOK.md)
 
 ## Repository layout
 
 ```text
-src/warmup.cpp             Your implementation
-src/warmup.h               Function declaration
-tests/test_warmup.cpp      Small visible test program
-scripts/check-env.sh       Pre-class environment check
-.vscode/tasks.json         Build/test tasks for VS Code
-.devcontainer/             Optional Codespaces configuration
-Makefile                   Command-line build and test shortcuts
-docs/VSCode-Workflow.md   Student instructions
-docs/INSTRUCTOR-CLASSROOM-SETUP.md  Instructor setup checklist
+src/warmup.hpp            Function declarations
+src/warmup.cpp            Student implementation file
+tests/warmup_tests.cpp    Visible assert-based tests
+scripts/check-env.sh      Environment check
+.github/workflows/        Warm-Up CI Check
+.devcontainer/            Optional Codespaces configuration
+Makefile                  Local build/test shortcuts
+docs/                     Student and instructor runbooks
 ```

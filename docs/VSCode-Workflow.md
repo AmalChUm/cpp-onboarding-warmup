@@ -1,28 +1,42 @@
-# C++ Onboarding Warm-Up: VS Code Workflow
-This warm-up rehearses the exact workflow used in class on **Thursday, November 19**. It is practice, not a graded AI-versus-no-AI task. Complete the workflow and open your Pull Request during the onboarding session.
+# C++ GitHub & Environment Warm-Up: Student Runbook
+
+This warm-up practices the GitHub workflow, VS Code editing, C++ compilation, local testing, branching, and Pull Requests used in the Thursday, November 19 lab.
 
 ## Quick path
 
-If you already have Git, `g++`, and VS Code working, follow this short path:
+1. Accept the collaborator invitation to your assigned repository.
+2. Disable AI coding extensions if your instructor asks you to work without them.
+3. Clone your assigned repository and create branch `feat/warmup`.
+4. Implement the three TODO functions in `src/warmup.cpp`.
+5. Run the local tests with `make test` or the direct `g++` command.
+6. Push `feat/warmup`, open a Pull Request into `main`, wait for CI, and merge.
+7. Submit the merged Pull Request URL in Canvas.
 
-1. Run `./scripts/check-env.sh`.
-2. Accept the GitHub Classroom invitation and open your personal assignment repository.
-3. Create `warmup/YOUR-GITHUB-USERNAME`.
-4. Implement `countSpikes` in `src/warmup.cpp`.
-5. Run `make test`, or use the VS Code **no make** task.
-6. Commit, push your branch, and open a Pull Request into `main`.
+## 1. Accept your repository invitation
 
-Use the detailed sections below if any step is unfamiliar or your computer needs setup.
+Your instructor will send a collaborator invitation for a personal repository named like:
 
-## Before class: run the environment check
+```text
+cpp-onboarding-warmup-YOUR-GITHUB-USERNAME
+```
 
-The biggest source of delay is a missing compiler or build tool. Before class, or at the start of the session, open VS Code and choose **Terminal → New Terminal**. From the repository root, run:
+Accept the invitation from the GitHub email or from:
+
+<https://github.com/AmalChUm/cpp-onboarding-warmup-YOUR-GITHUB-USERNAME/invitations>
+
+Replace `YOUR-GITHUB-USERNAME` with your actual GitHub username.
+
+Do **not** fork the template repository and do not work directly in `AmalChUm/cpp-onboarding-warmup`. Work in your assigned repository, where you have push access.
+
+## 2. Check your environment
+
+Open VS Code and choose **Terminal → New Terminal**. After cloning the repository, run:
 
 ```bash
 ./scripts/check-env.sh
 ```
 
-You can also check the individual tools:
+You can also check the tools directly:
 
 ```bash
 git --version
@@ -30,311 +44,196 @@ g++ --version
 make --version
 ```
 
-The environment check reports missing commands and whether your Git name and email are configured.
+If `g++` or `make` is missing, use the class-approved lab setup or GitHub Codespaces. The repository includes a `.devcontainer/` configuration for a C++ Codespace. On a managed computer, ask before installing software.
 
-### If a tool is missing
-
-- **Windows:** The easiest class-approved option is GitHub Codespaces (see below). If you are working locally, install WSL and the Ubuntu development tools, or install MSYS2 with the MinGW-w64 GCC toolchain. Do not install software during class without permission.
-- **macOS:** Install the Xcode Command Line Tools with `xcode-select --install`, then verify `g++ --version` and `make --version`.
-- **Ubuntu/Debian:** Install the class-approved build tools, commonly with `sudo apt update && sudo apt install build-essential`.
-- **Managed lab:** Ask lab support which compiler setup is supported; do not change the lab image yourself.
-
-If installation is not practical, use a Codespace. You can still practice Git branches, commits, pushes, and Pull Requests there.
-
-## 1. Start from GitHub Classroom—not the template repository
-
-Use **only the GitHub Classroom invitation link provided by your instructor**. Accept the assignment and wait for GitHub Classroom to create your personal assignment repository.
-
-Do **not** clone `AmalChUm/cpp-onboarding-warmup` directly. That repository is the instructor-owned template; students may not have permission to push to it, and a Pull Request to the template would be the wrong submission location.
-
-After accepting the Classroom assignment, open your newly created assignment repository and choose **Code → HTTPS → Copy**. Use the HTTPS URL for your personal assignment repository in the commands below.
-
-## 2. Optional: use GitHub Codespaces
-
-If local setup is difficult:
-
-1. Open your GitHub Classroom assignment repository.
-2. Select **Code → Codespaces → Create codespace on main**.
-3. Wait for VS Code in the browser to open.
-4. Open **Terminal → New Terminal**.
-5. Run `./scripts/check-env.sh`.
-
-The repository includes `.devcontainer/devcontainer.json`, which supplies a C++ development image and the Microsoft C/C++ extension. Codespaces also handles GitHub authentication in the browser. You still need to create a branch, commit, push, and open the Pull Request yourself.
-
-## 3. Clone and open the assignment in VS Code
-
-If you are working locally, open a VS Code terminal and run:
-
-```bash
-git clone YOUR-CLASSROOM-ASSIGNMENT-URL
-cd YOUR-ASSIGNMENT-REPOSITORY
-code .
-```
-
-Replace `YOUR-CLASSROOM-ASSIGNMENT-URL` with the URL copied from **your** Classroom assignment repository. If `code .` is not recognized, open VS Code manually and choose **File → Open Folder**, then select the cloned folder.
-
-Run the environment check from the repository root:
-
-```bash
-./scripts/check-env.sh
-```
-
-## 4. Configure Git identity if needed
-
-A commit needs a name and email. If the environment check prints a warning, configure them with your own information:
+If Git reports that your name or email is missing, configure them with your own GitHub-associated information:
 
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
 
-Use the email address associated with your GitHub account or your GitHub-provided no-reply email if your instructor requires that. Check the result with:
+## 3. Clone the repository and create `feat/warmup`
+
+Copy the HTTPS URL from your assigned repository using **Code → HTTPS → Copy**. In the VS Code terminal, run:
 
 ```bash
-git config --get user.name
-git config --get user.email
+git clone https://github.com/AmalChUm/cpp-onboarding-warmup-YOUR-GITHUB-USERNAME.git
+cd cpp-onboarding-warmup-YOUR-GITHUB-USERNAME
+git checkout -b feat/warmup
 ```
 
-## 5. Create your branch before editing
+Replace the repository URL and folder name with your assigned values.
 
-Never do assignment work directly on `main`. In the VS Code terminal, run:
-
-```bash
-git switch -c warmup/YOUR-GITHUB-USERNAME
-```
-
-Replace `YOUR-GITHUB-USERNAME` with your actual GitHub username. For example:
-
-```bash
-git switch -c warmup/amalstudent
-```
-
-If your Git version is too old for `git switch`, use the equivalent command:
-
-```bash
-git checkout -b warmup/YOUR-GITHUB-USERNAME
-```
-
-Verify the branch:
+Confirm that you are on the correct branch:
 
 ```bash
 git branch --show-current
-git status
+git remote -v
 ```
 
-The first command should print your `warmup/...` branch. You can also create a branch through the VS Code interface: click the branch name in the lower-left status bar, choose **Create new branch**, enter `warmup/YOUR-GITHUB-USERNAME`, and press Enter.
+The branch command should print `feat/warmup`, and the remote should point to your personal repository—not the template.
 
-## 6. Read the starter code and run the tests
+You may create the branch through VS Code instead: click the branch name in the lower-left status bar, choose **Create new branch**, enter `feat/warmup`, and press Enter.
 
-In the VS Code Explorer, open:
+## 4. Understand the three functions
 
-- `README.md` for the assignment summary;
-- `src/warmup.cpp` for the function you must complete; and
-- `tests/test_warmup.cpp` for visible examples.
+Open `src/warmup.cpp`. Complete the TODOs without changing `src/warmup.hpp` or `tests/warmup_tests.cpp`.
 
-Run the starter tests in the terminal:
-
-```bash
-make test
-```
-
-The starter code returns `0`, so two tests should fail. That is expected. You are practicing the workflow, not trying to make the starter pass unchanged.
-
-If `make` is unavailable, use the no-make command:
-
-```bash
-mkdir -p build
-g++ -std=c++17 -Wall -Wextra -pedantic -g -Isrc src/warmup.cpp tests/test_warmup.cpp -o build/test_warmup
-./build/test_warmup
-```
-
-Or use the VS Code task: choose **Terminal → Run Task**, then select **C++: build and run tests** or **C++: build and run tests (no make)**.
-
-Test output is easy to scan:
-
-- `PASS:` means one visible check passed.
-- `FAIL:` shows the expected value and the value your program returned.
-- `All tests passed.` means the test program returned success.
-
-## 7. Implement the function
-
-Edit `src/warmup.cpp` and implement:
+### `sumEvenNumbers`
 
 ```cpp
-int countSpikes(const int readings[], int n);
+int sumEvenNumbers(const int arr[], int size);
 ```
 
-A reading is an interior spike when:
+Loop through `arr[0]` through `arr[size - 1]` and return the sum of values divisible by 2. If `size` is `0`, return `0`.
 
-1. it has both a left and right neighbor;
-2. it is strictly greater than the integer average of those two neighbors; and
-3. it is counted once.
+### `countCharOccurrences`
 
-The first and last array elements are never interior readings. Inputs with fewer than three readings should return `0`.
+```cpp
+int countCharOccurrences(const std::string& text, char target);
+```
 
-Useful C++ reminders:
+Loop through the string and return how many characters equal `target`.
 
-- array indices start at `0`;
-- the interior indices are `1` through `n - 2`;
-- `int` division gives an integer average; and
-- `&&` combines conditions.
+### `getArrayBounds`
 
-Do not change the function signature, the test program, or the expected values.
+```cpp
+void getArrayBounds(const int arr[], int size, int& minVal, int& maxVal);
+```
 
-## 8. Compile and test in VS Code
+Assuming `size > 0`, initialize both reference outputs from `arr[0]`, then scan the rest of the array and update the minimum and maximum values.
 
-Save the file, then run either:
+This function intentionally practices pass-by-reference state updates.
+
+## 5. Compile and run tests locally
+
+The recommended command is:
 
 ```bash
 make test
 ```
 
-or, without `make`:
+The direct compiler command is:
 
 ```bash
-mkdir -p build && g++ -std=c++17 -Wall -Wextra -pedantic -g -Isrc src/warmup.cpp tests/test_warmup.cpp -o build/test_warmup && ./build/test_warmup
+g++ -std=c++17 -Wall -Wextra src/warmup.cpp tests/warmup_tests.cpp -o warmup_test
+./warmup_test
 ```
 
-You are done with the coding portion when the output ends with:
+You can also use **Terminal → Run Task** in VS Code and choose:
+
+- **C++: build and run warm-up tests**; or
+- **C++: build and run warm-up tests (no make)**.
+
+A successful run ends with:
 
 ```text
-All tests passed.
+Warm-up build and tests passed!
 ```
 
-If you want a clean rebuild and have `make`:
+There should be no compiler errors. The visible tests cover even-number sums, empty input, character counts, and array bounds.
+
+## 6. Review and commit your implementation
+
+Review the only intended student change:
 
 ```bash
-make clean
-make test
-```
-
-## 9. Review your changes
-
-Before committing, inspect your work:
-
-```bash
-git diff
+git diff -- src/warmup.cpp
 git status
 ```
 
-You should see your implementation change in `src/warmup.cpp`. You should not see generated files from `build/`; those are ignored automatically.
-
-## 10. Commit and push your branch
-
-Create a clear commit:
+Stage and commit:
 
 ```bash
 git add src/warmup.cpp
-git commit -m "Complete sensor spike detector warm-up"
+git commit -m "Complete C++ warm-up functions"
 ```
 
-You can also use VS Code’s Source Control panel:
+In VS Code, you can instead use the Source Control panel to review `src/warmup.cpp`, stage it, enter the same commit message, and click **Commit**.
 
-1. Click the Source Control icon on the left.
-2. Review the changed file.
-3. Click the plus sign beside `src/warmup.cpp` to stage it.
-4. Enter `Complete sensor spike detector warm-up` in the message box.
-5. Click **Commit**.
+## 7. Push and open the Pull Request
 
 Push the branch:
 
 ```bash
-git push -u origin warmup/YOUR-GITHUB-USERNAME
+git push -u origin feat/warmup
 ```
 
-Or choose **Publish Branch** in the Source Control panel.
+If GitHub asks you to authenticate, use the approved VS Code/GitHub sign-in flow or credential manager. Do not paste a password or access token into a file, commit, or chat.
 
-On the first push, GitHub may ask you to sign in. Use the GitHub sign-in flow offered by VS Code or your instructor’s approved credential manager. Never paste a password or access token into a file, commit, or chat. If an HTTPS push asks for a password, do not guess; stop and use the approved sign-in method or Codespaces.
+Open your assigned repository on GitHub and choose **Compare & pull request**. If the button is not shown:
 
-If you see `Author identity unknown`, complete the Git identity step above and retry the commit.
+1. choose **Pull requests → New pull request**;
+2. set **base** to `main`;
+3. set **compare** to `feat/warmup`; and
+4. choose **Create pull request**.
 
-## 11. Open the Pull Request
+The base branch is where the change will land; the compare branch is your work.
 
-After the push, GitHub usually displays **Compare & pull request**. Select it. If not:
+## 8. Wait for CI and merge
 
-1. open your Classroom assignment repository on GitHub;
-2. choose **Pull requests → New pull request**;
-3. set **base** to `main` (the destination branch);
-4. set **compare** to your `warmup/...` branch (the branch containing your work); and
-5. choose **Create pull request**.
+Wait for **Warm-Up CI Check** to finish. It compiles:
 
-Use this title:
+```bash
+g++ -std=c++17 -Wall -Wextra src/warmup.cpp tests/warmup_tests.cpp -o warmup_test
+./warmup_test
+```
+
+When the check is green, choose **Merge pull request → Confirm merge**. Do not merge until the CI check passes unless the instructor tells you otherwise.
+
+## 9. Submit on Canvas
+
+Copy the URL of your merged Pull Request, which will look like:
 
 ```text
-Complete C++ onboarding warm-up
+https://github.com/AmalChUm/cpp-onboarding-warmup-YOUR-GITHUB-USERNAME/pull/1
 ```
 
-In the description, include:
-
-```text
-## What I changed
-- Implemented countSpikes in src/warmup.cpp.
-
-## Verification
-- `make test` passes.
-- Output ends with: All tests passed.
-
-## Workflow practiced
-- Created a feature branch
-- Committed and pushed the branch
-- Opened this Pull Request into main
-```
-
-Do not merge the Pull Request unless your instructor asks you to. The point of the exercise is to practice creating the PR.
+Submit that URL in the Canvas assignment box before leaving class.
 
 ## Troubleshooting
 
-### `make: command not found`
+### I cannot find the invitation
 
-Use **C++: build and run tests (no make)** from **Terminal → Run Task**, or run the direct `g++` command shown above. If `g++` is also missing, use Codespaces or follow the platform setup options at the top of this guide.
+Check your GitHub email and the repository invitations page. Confirm that the instructor has the exact spelling of your GitHub username.
 
-### `g++: command not found`
+### I cloned the template by mistake
 
-Use Codespaces, the class-managed lab image, WSL/MSYS2 on Windows, Xcode Command Line Tools on macOS, or the Ubuntu build tools as appropriate. Ask for help before installing software on a managed computer.
+Do not push or open a PR there. Delete the local clone, accept your collaborator invitation, and clone your assigned repository instead.
+
+### `g++: command not found` or `make: command not found`
+
+Use the class-managed lab setup or Codespaces. If `g++` is available but `make` is not, use the direct compiler command or the no-make VS Code task.
 
 ### `fatal: not a git repository`
 
-Your terminal is not inside the cloned assignment folder. Run:
+Change into the assigned repository folder and retry:
 
 ```bash
-cd YOUR-ASSIGNMENT-REPOSITORY
+cd cpp-onboarding-warmup-YOUR-GITHUB-USERNAME
 git status
 ```
 
-### `src/warmup.cpp` is not listed in `git diff`
+### The Pull Request targets the wrong repository or branch
 
-Make sure you saved the file and are on your `warmup/...` branch:
-
-```bash
-git branch --show-current
-git status
-```
-
-### Push is rejected or asks for a password
-
-Confirm that you cloned your GitHub Classroom assignment repository, not the instructor template:
-
-```bash
-git remote -v
-```
-
-Then use the approved GitHub sign-in method, VS Code GitHub authentication, or Codespaces. Do not force-push and do not paste tokens into the terminal history or repository.
+Close the incorrect PR without merging. Reopen it from your assigned repository with base `main` and compare `feat/warmup`.
 
 ### Tests fail
 
-Read the first `FAIL:` line. Compare your loop bounds, neighbor indices, strict comparison, integer average, and handling of arrays shorter than three elements. Do not edit the tests to make them pass.
+Read the compiler output first. Check the loop bounds, `% 2 == 0`, character comparison, initial `arr[0]` bounds, and reference assignments. Do not edit the tests to make them pass.
 
 ## Completion checklist
 
-- [ ] Used the GitHub Classroom invitation and opened the personal assignment repository
-- [ ] Ran `./scripts/check-env.sh`
-- [ ] Opened the assignment in VS Code or Codespaces
-- [ ] Created `warmup/<your-github-username>`
-- [ ] Implemented `src/warmup.cpp`
-- [ ] `make test` or the no-make test command passes
-- [ ] Reviewed `git diff`
-- [ ] Configured Git name and email if needed
-- [ ] Created a commit
-- [ ] Pushed the branch to GitHub
-- [ ] Opened a Pull Request into `main`
-- [ ] Added test verification to the PR description
+- [ ] Collaborator invitation accepted
+- [ ] AI extensions disabled if instructed
+- [ ] Assigned repository cloned
+- [ ] `feat/warmup` created
+- [ ] Three TODO functions implemented
+- [ ] Local tests pass
+- [ ] Commit created
+- [ ] Branch pushed
+- [ ] Pull Request opened into `main`
+- [ ] Warm-Up CI Check is green
+- [ ] Pull Request merged
+- [ ] Merged Pull Request URL submitted in Canvas
